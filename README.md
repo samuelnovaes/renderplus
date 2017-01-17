@@ -10,22 +10,22 @@ npm install renderplus
 ```javascript
 const render = require("renderplus");
 
-let html = render(($)=>{
-	$.tag("html", ($)=>{
-		$.tag("head", ($)=>{
-			$.tag("title", ($)=>$.text("Teste"));
+let html = render($=>{
+	$.tag("html", $=>{
+		$.tag("head", $=>{
+			$.tag("title", $=>$.text("Teste"));
 			$.tag("meta", {charset: "utf-8"});
 		});
-		$.tag("body", ($)=>{
+		$.tag("body", $=>{
 			$.comment("THIS IS A SELECT TAG");
 			$.text("SELECT A NUMBER:");
 			$.tag("br");
-			$.tag("select", ($)=>{
-				$.tag("option", {value: "0"}, ($)=>$.text("zero"));
-				$.tag("option", {value: "1"}, ($)=>$.text("one"));
-				$.tag("option", {value: "2", selected: null}, ($)=>$.text("two"));
-				$.tag("option", {value: "3"}, ($)=>$.text("three"));
-				$.tag("option", {value: "4"}, ($)=>$.text("four"));
+			$.tag("select", $=>{
+				$.tag("option", {value: "0"}, $=>$.text("zero"));
+				$.tag("option", {value: "1"}, $=>$.text("one"));
+				$.tag("option", {value: "2", selected: null}, $=>$.text("two"));
+				$.tag("option", {value: "3"}, $=>$.text("three"));
+				$.tag("option", {value: "4"}, $=>$.text("four"));
 			});
 		});
 	});
@@ -73,7 +73,7 @@ render the html page
 - render(callback:function)
 
 ```javascript
-render(($)=>{
+render($=>{
   //Use $ to create tags, text and comments
 });
 ```
@@ -85,13 +85,13 @@ add a tag
 - $.tag(tagName:string, attrs:object*, callback:function*)
 
 ```javascript
-render(($)=>{
+render($=>{
   $.tag("br");
   $.tag("img", {src: "pic.png"});
-  $.tag("div", ($)=>{
+  $.tag("div", $=>{
     //Use $ to create child elements inside the div
   });
-  $.tag("div", {id: "my-div"}, ($)=>{
+  $.tag("div", {id: "my-div"}, $=>{
     //Use $ to create child elements inside the div
   });
 });
@@ -114,13 +114,13 @@ add text
 - $.text(text:string)
 
 ```javascript
-render(($)=>{
+render($=>{
   $.text("Hello World");
-  $.tag("p", ($)=>$.text("I am a paragraph"));
-  $.tag("div", ($)=>{
+  $.tag("p", $=>$.text("I am a paragraph"));
+  $.tag("div", $=>{
     $.text("Click on the button:");
     $.tag("br");
-    $.tag("button", ($)=>$.text("I am a button"));
+    $.tag("button", $=>$.text("I am a button"));
   });
 });
 ```
@@ -148,7 +148,7 @@ Add a html comment tag
 - $.comment(text:string)
 
 ```javascript
-render(($)=>{
+render($=>{
   $.comment("I am a comment");
 });
 ```
@@ -166,22 +166,22 @@ const app = require("express")();
 const render = require("./html.js");
 
 app.get("/", (req, res)=>{
-	res.send(render(($)=>{
-		$.tag("html", ($)=>{
-			$.tag("head", ($)=>{
-				$.tag("title", ($)=>$.text("Teste"));
+	res.send(render($=>{
+		$.tag("html", $=>{
+			$.tag("head", $=>{
+				$.tag("title", $=>$.text("Teste"));
 				$.tag("meta", {charset: "utf-8"});
 			});
-			$.tag("body", ($)=>{
+			$.tag("body", $=>{
 				$.comment("THIS IS A SELECT TAG");
 				$.text("SELECT A NUMBER:");
 				$.tag("br");
-				$.tag("select", ($)=>{
-					$.tag("option", {value: "0"}, ($)=>$.text("zero"));
-					$.tag("option", {value: "1"}, ($)=>$.text("one"));
-					$.tag("option", {value: "2", selected: null}, ($)=>$.text("two"));
-					$.tag("option", {value: "3"}, ($)=>$.text("three"));
-					$.tag("option", {value: "4"}, ($)=>$.text("four"));
+				$.tag("select", $=>{
+					$.tag("option", {value: "0"}, $=>$.text("zero"));
+					$.tag("option", {value: "1"}, $=>$.text("one"));
+					$.tag("option", {value: "2", selected: null}, $=>$.text("two"));
+					$.tag("option", {value: "3"}, $=>$.text("three"));
+					$.tag("option", {value: "4"}, $=>$.text("four"));
 				});
 			});
 		});
