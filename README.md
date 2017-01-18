@@ -44,7 +44,7 @@ console.log(html);
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<!-- This is a SELECT tag -->
+		<!-- THIS IS THE TAG SELECT -->
 		Select a number:
 		<br>
 		<select>
