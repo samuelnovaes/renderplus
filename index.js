@@ -1,21 +1,21 @@
-let autoclose = ['area','base','br','col','embed','hr','img','input','keygen','link','menuitem','meta','param','source','track','wbr'];
+var autoclose = ['area','base','br','col','embed','hr','img','input','keygen','link','menuitem','meta','param','source','track','wbr'];
 
-module.exports = fn=>{
-	let $ = {
+module.exports = function(fn){
+	var $ = {
 		_tabs: 0,
 		_value: '<!DOCTYPE html>',
 		_indent: function(){
 			this._value += "\n";
-			for(let i = 0; i < this._tabs; i++){
+			for(var i = 0; i < this._tabs; i++){
 				this._value += "\t";
 			}
 		},
-		_camelCase2Trace: txt=>{
+		_camelCase2Trace: function(txt){
 			return txt.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 		},
 		_processFunction: function(fn){
 			fn = fn.toString();
-			let nofunc = fn.slice(fn.indexOf("{") + 1, fn.lastIndexOf("}"))
+			var nofunc = fn.slice(fn.indexOf("{") + 1, fn.lastIndexOf("}"));
 			while(/\n\t* {4}/g.test(nofunc)){
 				nofunc = nofunc.replace(/(\n\t*) {4}/g, "$1\t");
 			}
@@ -32,7 +32,7 @@ module.exports = fn=>{
 			this._tabs++;
 			this._value += '<'+name;
 			if(attrs){
-				for(let i in attrs){
+				for(var i in attrs){
 					this._value += ' '+i;
 					if(attrs[i] != null){
 						this._value += '="'+attrs[i]+'"';
@@ -64,11 +64,11 @@ module.exports = fn=>{
 			this._indent();
 			this._value += '<style type="text/css">';
 			this._tabs++;
-			for(let i in obj){
+			for(var i in obj){
 				this._indent();
 				this._value += i+"{";
 				this._tabs++;
-				for(let j in obj[i]){
+				for(var j in obj[i]){
 					this._indent();
 					this._value += this._camelCase2Trace(j)+": "+obj[i][j]+";";
 				}
@@ -93,4 +93,4 @@ module.exports = fn=>{
 	};
 	fn($);
 	return $._value;
-}
+};
