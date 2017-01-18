@@ -15,14 +15,11 @@ module.exports = fn=>{
 		},
 		_processFunction: function(fn){
 			fn = fn.toString();
-			let nofunc = fn.slice(fn.indexOf("{") + 1, fn.lastIndexOf("}"));
-			let rescue = /\n\t+$/.exec(nofunc).toString();
-			nofunc = nofunc.split(rescue+"\t").join('\n').trim();
-			let tabs = "";
-			for(let i = 0; i < this._tabs; i++){
-				tabs += "\t";
+			let nofunc = fn.slice(fn.indexOf("{") + 1, fn.lastIndexOf("}"))
+			while(/\n\t* {4}/g.test(nofunc)){
+				nofunc = nofunc.replace(/(\n\t*) {4}/g, "$1\t");
 			}
-			nofunc = nofunc.replace(/\n/g, "\n"+tabs);
+			nofunc = nofunc.replace(/\n\t/g, "\n").trim();
 			return nofunc;
 		},
 		tag: function(name, attrs, fn){
