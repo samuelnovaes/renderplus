@@ -69,7 +69,7 @@ console.log(html);
 ```
 # render
 
-render the html page
+Render the html page
 
 - render(callback:function)
 
