@@ -1,14 +1,17 @@
-[![NPM](https://nodei.co/npm/renderplus.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/renderplus/)
-
 # renderplus
+
 Render advanced HTML pages with JavaScript
 
+[![NPM](https://nodei.co/npm/renderplus.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/renderplus/)
+
 # Install
+
 ```bash
 npm install renderplus
 ```
 
 # Example
+
 ```javascript
 const render = require("renderplus");
 
@@ -35,8 +38,11 @@ let html = render($=>{
 
 console.log(html);
 ```
+
 ### Output
+
 ```html
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -69,6 +75,7 @@ console.log(html);
 	</body>
 </html>
 ```
+
 # render
 
 Render the html page
