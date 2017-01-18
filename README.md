@@ -10,7 +10,7 @@ Render advanced HTML pages with JavaScript
 npm install renderplus
 ```
 
-# Example
+# Full example
 
 ```javascript
 const render = require("renderplus");
@@ -20,12 +20,34 @@ let html = render($=>{
 		$.tag("head", $=>{
 			$.tag("title", $=>$.text("Test"));
 			$.tag("meta", {charset: "utf-8"});
+			$.style({
+				"*": {
+					fontFamily: "arial, sans-serif"
+				},
+				"body": {
+					backgroundColor: "#000",
+					color: "#fff"
+				},
+				"#choice": {
+					padding: "5px",
+					backgroundColor: "teal",
+					color: "#fff",
+					border: "1px solid #fff",
+					outline: "none"
+				}
+			});
+			$.script(()=>{
+				function test(){
+					let val = document.getElementById("choice").value;
+					alert(val);
+				}
+			});
 		});
 		$.tag("body", $=>{
 			$.comment("THIS IS THE TAG SELECT");
 			$.text("SELECT A NUMBER:");
 			$.tag("br");
-			$.tag("select", $=>{
+			$.tag("select", {id: "choice", onchange: "test()"}, $=>{
 				$.tag("option", {value: "0"}, $=>$.text("zero"));
 				$.tag("option", {value: "1"}, $=>$.text("one"));
 				$.tag("option", {value: "2", selected: null}, $=>$.text("two"));
@@ -34,15 +56,14 @@ let html = render($=>{
 			});
 		});
 	});
-});
+})
 
 console.log(html);
 ```
 
-### Output
+**Output**
 
 ```html
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -50,26 +71,48 @@ console.log(html);
 			Test
 		</title>
 		<meta charset="utf-8">
+		<style type="text/css">
+			*{
+				font-family: arial, sans-serif;
+			}
+			body{
+				background-color: #000;
+				color: #fff;
+			}
+			#choice{
+				padding: 5px;
+				background-color: teal;
+				color: #fff;
+				border: 1px solid #fff;
+				outline: none;
+			}
+		</style>
+		<script type="text/javascript">
+			function test(){
+				let val = document.getElementById("choice").value;
+				alert(val);
+			}
+		</script>
 	</head>
 	<body>
 		<!-- THIS IS THE TAG SELECT -->
-		Select a number:
+		SELECT A NUMBER:
 		<br>
-		<select>
+		<select id="choice" onchange="test()">
 			<option value="0">
-				0
+				zero
 			</option>
 			<option value="1">
-				1
+				one
 			</option>
 			<option value="2" selected>
-				2
+				two
 			</option>
 			<option value="3">
-				3
+				three
 			</option>
 			<option value="4">
-				4
+				four
 			</option>
 		</select>
 	</body>
@@ -106,7 +149,7 @@ render($=>{
 	});
 });
 ```
-### Output
+**Output**
 
 ```html
 <!DOCTYPE html>
@@ -134,7 +177,7 @@ render($=>{
 	});
 });
 ```
-### Output
+**Output**
 
 ```html
 <!DOCTYPE html>
@@ -163,12 +206,98 @@ render($=>{
 });
 ```
 
-### Output
+**Output**
 
 ```html
 <!DOCTYPE html>
 <!-- I am a comment -->
 ```
+
+# $.style
+
+Add style tag
+
+- $.style(styles:object)
+
+```javascript
+/*
+	$.style({
+		selector: {
+			camelCaseAttribute: value
+		}
+	});
+*/
+render($=>{
+	$.style({
+		"*": {
+			fontFamily: "arial, sans-serif"
+		},
+		"body": {
+			backgroundColor: "#000",
+			color: "#fff"
+		},
+		"#choice": {
+			padding: "5px",
+			backgroundColor: "teal",
+			color: "#fff",
+			border: "1px solid #fff",
+			outline: "none"
+		}
+	});
+});
+```
+
+**Output**
+
+```html
+<!DOCTYPE html>
+<style type="text/css">
+	*{
+		font-family: arial, sans-serif;
+	}
+	body{
+		background-color: #000;
+		color: #fff;
+	}
+	#choice{
+		padding: 5px;
+		background-color: teal;
+		color: #fff;
+		border: 1px solid #fff;
+		outline: none;
+	}
+</style>
+```
+
+# $.script
+
+Add script tag with code
+
+- $.script(callback:function)
+
+```javascript
+render($=>{
+	$.script(()=>{
+		function test(){
+			let val = document.getElementById("choice").value;
+			alert(val);
+		}
+	});
+});
+```
+
+**Output**
+
+```html
+<!DOCTYPE html>
+<script type="text/javascript">
+	function test(){
+		let val = document.getElementById("choice").value;
+		alert(val);
+	}
+</script>
+```
+
 # Use with [Express](https://www.npmjs.com/package/express)
 
 ```javascript
@@ -177,29 +306,9 @@ const render = require("renderplus");
 
 app.get("/", (req, res)=>{
 	res.send(render($=>{
-		$.tag("html", $=>{
-			$.tag("head", $=>{
-				$.tag("title", $=>$.text("Test"));
-				$.tag("meta", {charset: "utf-8"});
-			});
-			$.tag("body", $=>{
-				$.comment("THIS IS THE TAG SELECT");
-				$.text("SELECT A NUMBER:");
-				$.tag("br");
-				$.tag("select", $=>{
-					$.tag("option", {value: "0"}, $=>$.text("zero"));
-					$.tag("option", {value: "1"}, $=>$.text("one"));
-					$.tag("option", {value: "2", selected: null}, $=>$.text("two"));
-					$.tag("option", {value: "3"}, $=>$.text("three"));
-					$.tag("option", {value: "4"}, $=>$.text("four"));
-				});
-			});
-		});
+		//Your elements here
 	}));
 });
 
 app.listen(8080, ()=>console.log("Server running"));
 ```
-
-### Result in http://localhost:8080/
-![Image of result](https://lh3.googleusercontent.com/u/0/d/0B4u0L5wy_IY8NEszYmE1bGhIdUE=s1600-k-iv1)

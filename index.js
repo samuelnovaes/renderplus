@@ -10,6 +10,13 @@ module.exports = fn=>{
 				this._value += "\t";
 			}
 		},
+		_camelCase2Trace: txt=>{
+			return txt.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+		},
+		_processFunction: fn=>{
+			fn = fn.toString();
+			return fn.slice(fn.indexOf("{") + 1, fn.lastIndexOf("}"));
+		},
 		tag: function(name, attrs, fn){
 			name = name.toLowerCase();
 			if(typeof attrs == 'function'){
@@ -47,6 +54,33 @@ module.exports = fn=>{
 		comment: function(txt){
 			this._indent();
 			this._value += "<!-- "+txt+" -->";
+		},
+		style: function(obj){
+			this._indent();
+			this._value += '<style type="text/css">';
+			this._tabs++;
+			for(let i in obj){
+				this._indent();
+				this._value += i+"{";
+				this._tabs++;
+				for(let j in obj[i]){
+					this._indent();
+					this._value += this._camelCase2Trace(j)+": "+obj[i][j]+";";
+				}
+				this._tabs--;
+				this._indent();
+				this._value += "}";
+			}
+			this._tabs--;
+			this._indent();
+			this._value += "</style>";
+		},
+		script: function(fn){
+			this._indent();
+			this._value += '<script type="text/javascript">';
+			this._value += this._processFunction(fn);
+			this._indent();
+			this._value += '</script>';
 		}
 	};
 	fn($);
