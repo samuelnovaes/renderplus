@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/renderplus.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/renderplus/)
+
 # renderplus
 Render advanced HTML pages with JavaScript
 
