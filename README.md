@@ -81,7 +81,7 @@ render($=>{
 
 # $.tag
 
-add a tag
+Add tag
 
 - $.tag(tagName:string, attrs:object*, callback:function*)
 
@@ -110,7 +110,7 @@ render($=>{
 ```
 # $.text
 
-add text
+Add text
 
 - $.text(text:string)
 
@@ -144,7 +144,7 @@ Hello World
 
 # $.comment
 
-Add a html comment tag
+Add html comment tag
 
 - $.comment(text:string)
 
