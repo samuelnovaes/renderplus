@@ -164,7 +164,7 @@ render($=>{
 
 ```javascript
 const app = require("express")();
-const render = require("./html.js");
+const render = require("renderplus");
 
 app.get("/", (req, res)=>{
 	res.send(render($=>{

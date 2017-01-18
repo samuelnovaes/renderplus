@@ -1,6 +1,6 @@
 {
   "name": "renderplus",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Render advanced HTML pages with JavaScript",
   "main": "index.js",
   "scripts": {
