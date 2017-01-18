@@ -13,11 +13,11 @@ const render = require("renderplus");
 let html = render($=>{
 	$.tag("html", $=>{
 		$.tag("head", $=>{
-			$.tag("title", $=>$.text("Teste"));
+			$.tag("title", $=>$.text("Test"));
 			$.tag("meta", {charset: "utf-8"});
 		});
 		$.tag("body", $=>{
-			$.comment("THIS IS A SELECT TAG");
+			$.comment("THIS IS THE TAG SELECT");
 			$.text("SELECT A NUMBER:");
 			$.tag("br");
 			$.tag("select", $=>{
@@ -74,7 +74,7 @@ render the html page
 
 ```javascript
 render($=>{
-  //Use $ to create tags, text and comments
+	//Use $ to create tags, text and comments
 });
 ```
 
@@ -86,14 +86,14 @@ add a tag
 
 ```javascript
 render($=>{
-  $.tag("br");
-  $.tag("img", {src: "pic.png"});
-  $.tag("div", $=>{
-    //Use $ to create child elements inside the div
-  });
-  $.tag("div", {id: "my-div"}, $=>{
-    //Use $ to create child elements inside the div
-  });
+	$.tag("br");
+	$.tag("img", {src: "pic.png"});
+	$.tag("div", $=>{
+	    //Use $ to create child elements inside the div
+	});
+	$.tag("div", {id: "my-div"}, $=>{
+    	//Use $ to create child elements inside the div
+	});
 });
 ```
 ### Output
@@ -115,13 +115,13 @@ add text
 
 ```javascript
 render($=>{
-  $.text("Hello World");
-  $.tag("p", $=>$.text("I am a paragraph"));
-  $.tag("div", $=>{
-    $.text("Click on the button:");
-    $.tag("br");
-    $.tag("button", $=>$.text("I am a button"));
-  });
+	$.text("Hello World");
+	$.tag("p", $=>$.text("I am a paragraph"));
+	$.tag("div", $=>{
+		$.text("Click on the button:");
+		$.tag("br");
+		$.tag("button", $=>$.text("I am a button"));
+	});
 });
 ```
 ### Output
@@ -149,7 +149,7 @@ Add a html comment tag
 
 ```javascript
 render($=>{
-  $.comment("I am a comment");
+	$.comment("I am a comment");
 });
 ```
 
@@ -169,7 +169,7 @@ app.get("/", (req, res)=>{
 	res.send(render($=>{
 		$.tag("html", $=>{
 			$.tag("head", $=>{
-				$.tag("title", $=>$.text("Teste"));
+				$.tag("title", $=>$.text("Test"));
 				$.tag("meta", {charset: "utf-8"});
 			});
 			$.tag("body", $=>{
