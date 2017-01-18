@@ -39,13 +39,14 @@ console.log(html);
 <html>
 	<head>
 		<title>
-			Teste
+			Test
 		</title>
 		<meta charset="utf-8">
 	</head>
 	<body>
 		<!-- This is a SELECT tag -->
 		Select a number:
+		<br>
 		<select>
 			<option value="0">
 				0
@@ -173,7 +174,7 @@ app.get("/", (req, res)=>{
 				$.tag("meta", {charset: "utf-8"});
 			});
 			$.tag("body", $=>{
-				$.comment("THIS IS A SELECT TAG");
+				$.comment("THIS IS THE TAG SELECT");
 				$.text("SELECT A NUMBER:");
 				$.tag("br");
 				$.tag("select", $=>{
