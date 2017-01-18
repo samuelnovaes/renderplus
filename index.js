@@ -13,9 +13,17 @@ module.exports = fn=>{
 		_camelCase2Trace: txt=>{
 			return txt.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 		},
-		_processFunction: fn=>{
+		_processFunction: function(fn){
 			fn = fn.toString();
-			return fn.slice(fn.indexOf("{") + 1, fn.lastIndexOf("}"));
+			let nofunc = fn.slice(fn.indexOf("{") + 1, fn.lastIndexOf("}"));
+			let rescue = /\n\t+$/.exec(nofunc).toString();
+			nofunc = nofunc.split(rescue+"\t").join('\n').trim();
+			let tabs = "";
+			for(let i = 0; i < this._tabs; i++){
+				tabs += "\t";
+			}
+			nofunc = nofunc.replace(/\n/g, "\n"+tabs);
+			return nofunc;
 		},
 		tag: function(name, attrs, fn){
 			name = name.toLowerCase();
@@ -78,7 +86,10 @@ module.exports = fn=>{
 		script: function(fn){
 			this._indent();
 			this._value += '<script type="text/javascript">';
+			this._tabs++;
+			this._indent();
 			this._value += this._processFunction(fn);
+			this._tabs--;
 			this._indent();
 			this._value += '</script>';
 		}
