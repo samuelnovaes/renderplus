@@ -1,7 +1,5 @@
 (function(){
-
 	var autoclose = ['area','base','br','col','embed','hr','img','input','keygen','link','menuitem','meta','param','source','track','wbr'];
-	
 	function render(fn){		
 		var $ = {
 			_tabs: 0,
@@ -130,12 +128,10 @@
 		fn($);
 		return $._value;
 	}
-
 	if(typeof module !== 'undefined' && module.exports){
 		module.exports = render;
 	}
 	else{
 		this.render = render;
 	}
-	
 }).call(this);
