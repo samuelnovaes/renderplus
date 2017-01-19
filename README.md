@@ -4,6 +4,8 @@ Render advanced HTML pages with JavaScript
 
 [![NPM](https://nodei.co/npm/renderplus.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/renderplus/)
 
+See [JXServer](https://github.com/samuelnovaes/jxserver). A Renderplus web server
+
 # Install
 
 ```bash
@@ -298,7 +300,7 @@ render($=>{
 </script>
 ```
 
-# Use with [Express](https://www.npmjs.com/package/express)
+# Using with [Express](https://www.npmjs.com/package/express)
 
 ```javascript
 const app = require("express")();
@@ -311,4 +313,33 @@ app.get("/", (req, res)=>{
 });
 
 app.listen(8080, ()=>console.log("Server running"));
+```
+
+# Using in browser
+
+Download renderplus.js library [here](https://raw.githubusercontent.com/samuelnovaes/renderplus/master/renderplus.js)
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Renderplus demo</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+
+		<!-- Import renderplus.js -->
+		<script type="text/javascript" src="renderplus.js"></script>
+
+		<!-- Call render function -->
+		<script type="text/javascript">
+			document.write(render($=>{
+				$.tag("button", ()=>$.text("I am a button"));
+				$.tag("br");
+				$.tag("img", {src: "demo.png"});
+			}));
+		</script>
+
+	</body>
+</html>
 ```
