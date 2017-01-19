@@ -1,30 +1,30 @@
 {
-	"name": "renderplus",
-	"version": "1.0.11",
-	"description": "Render advanced HTML pages with JavaScript",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/samuelnovaes/renderplus.git"
-	},
-	"keywords": [
-		"render",
-		"html",
-		"express",
-		"view",
-		"engine",
-		"view",
-		"template",
-		"pages",
-		"page"
-	],
-	"author": "Samuel Novaes",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/samuelnovaes/renderplus/issues"
-	},
-	"homepage": "https://github.com/samuelnovaes/renderplus#readme"
+  "name": "renderplus",
+  "version": "1.0.12",
+  "description": "Render advanced HTML pages with JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuelnovaes/renderplus.git"
+  },
+  "keywords": [
+    "render",
+    "html",
+    "express",
+    "view",
+    "engine",
+    "view",
+    "template",
+    "pages",
+    "page"
+  ],
+  "author": "Samuel Novaes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samuelnovaes/renderplus/issues"
+  },
+  "homepage": "https://github.com/samuelnovaes/renderplus#readme"
 }

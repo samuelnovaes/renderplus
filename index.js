@@ -19,15 +19,41 @@ module.exports = function(fn){
 			while(/\n\t* {4}/g.test(nofunc)){
 				nofunc = nofunc.replace(/(\n\t*) {4}/g, "$1\t");
 			}
-			nofunc = nofunc.replace(/\n\t/g, "\n").trim();
+
+			var moved = null;
+			nofunc.split(/\n/g).forEach(function(item){
+				if(!/^\s*$/.test(item)){
+					var exec = /^\t+/.exec(item);
+					var distance = exec ? exec.toString().match(/\t/g).length : 0;
+					if(moved == null || distance < moved){
+						moved = distance;
+					}
+				}
+			});
+
+			var regMoved = new RegExp("\n\t{"+moved+"}", "g");
+			var tabs = "\n";
+			for(var i = 0; i < this._tabs; i++){
+				tabs += "\t";
+			}
+			var regTabs = new RegExp("^\n\t{"+this._tabs+"}");
+			nofunc = nofunc
+			.replace(regMoved, tabs)
+			.replace(regTabs, "")
+			.replace(/\n\t*$/, "");
+
 			return nofunc;
 		},
 		tag: function(name, attrs, fn){
+			if(name === undefined) throw new Error("Expected tag name argument");
+			if(typeof name != "string") throw new Error("Tag name argument must be a string");
 			name = name.toLowerCase();
 			if(typeof attrs == 'function'){
 				fn = attrs;
 				attrs = null;
 			}
+			if(attrs && typeof attrs != "object") throw new Error("Tag attributes argument must be an object");
+			if(fn && typeof fn != "function") throw new Error("Tag callback argument must be a function");
 			this._indent();
 			this._tabs++;
 			this._value += '<'+name;
@@ -53,14 +79,18 @@ module.exports = function(fn){
 			}
 		},
 		text: function(txt){
+			if(txt === undefined) throw new Error("Expected text argument");
 			this._indent();
 			this._value += txt;
 		},
 		comment: function(txt){
+			if(txt === undefined) throw new Error("Expected comment argument");
 			this._indent();
 			this._value += "<!-- "+txt+" -->";
 		},
 		style: function(obj){
+			if(obj === undefined) throw new Error("Expected style argument");
+			if(typeof obj != "object") throw new Error("Style argument must be an object");
 			this._indent();
 			this._value += '<style type="text/css">';
 			this._tabs++;
@@ -81,12 +111,16 @@ module.exports = function(fn){
 			this._value += "</style>";
 		},
 		script: function(fn){
+			if(fn === undefined) throw new Error("Expected script argument");
+			if(typeof fn != "function") throw new Error("Script argument must be a function");
 			this._indent();
 			this._value += '<script type="text/javascript">';
-			this._tabs++;
-			this._indent();
-			this._value += this._processFunction(fn);
-			this._tabs--;
+			if(this._processFunction(fn) != ""){
+				this._tabs++;
+				this._indent();
+				this._value += this._processFunction(fn);
+				this._tabs--;
+			}
 			this._indent();
 			this._value += '</script>';
 		}

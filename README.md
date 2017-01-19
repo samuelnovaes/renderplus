@@ -16,9 +16,9 @@ npm install renderplus
 const render = require("renderplus");
 
 let html = render($=>{
-	$.tag("html", $=>{
-		$.tag("head", $=>{
-			$.tag("title", $=>$.text("Test"));
+	$.tag("html", ()=>{
+		$.tag("head", ()=>{
+			$.tag("title", ()=>$.text("Test"));
 			$.tag("meta", {charset: "utf-8"});
 			$.style({
 				"*": {
@@ -43,16 +43,16 @@ let html = render($=>{
 				}
 			});
 		});
-		$.tag("body", $=>{
+		$.tag("body", ()=>{
 			$.comment("THIS IS THE TAG SELECT");
 			$.text("SELECT A NUMBER:");
 			$.tag("br");
-			$.tag("select", {id: "choice", onchange: "test()"}, $=>{
-				$.tag("option", {value: "0"}, $=>$.text("zero"));
-				$.tag("option", {value: "1"}, $=>$.text("one"));
-				$.tag("option", {value: "2", selected: null}, $=>$.text("two"));
-				$.tag("option", {value: "3"}, $=>$.text("three"));
-				$.tag("option", {value: "4"}, $=>$.text("four"));
+			$.tag("select", {id: "choice", onchange: "test()"}, ()=>{
+				$.tag("option", {value: "0"}, ()=>$.text("zero"));
+				$.tag("option", {value: "1"}, ()=>$.text("one"));
+				$.tag("option", {value: "2", selected: null}, ()=>$.text("two"));
+				$.tag("option", {value: "3"}, ()=>$.text("three"));
+				$.tag("option", {value: "4"}, ()=>$.text("four"));
 			});
 		});
 	});
@@ -127,7 +127,7 @@ Render the html page
 
 ```javascript
 render($=>{
-	//Use $ to create tags, text and comments
+	//You can create tags, text and comments here
 });
 ```
 
@@ -141,11 +141,11 @@ Add tag
 render($=>{
 	$.tag("br");
 	$.tag("img", {src: "pic.png"});
-	$.tag("div", $=>{
-	    //Use $ to create child elements inside the div
+	$.tag("div", ()=>{
+	    //You can create child elements here
 	});
-	$.tag("div", {id: "my-div"}, $=>{
-    	//Use $ to create child elements inside the div
+	$.tag("div", {id: "my-div"}, ()=>{
+    	//You can create child elements here
 	});
 });
 ```
@@ -169,11 +169,11 @@ Add text
 ```javascript
 render($=>{
 	$.text("Hello World");
-	$.tag("p", $=>$.text("I am a paragraph"));
-	$.tag("div", $=>{
+	$.tag("p", ()=>$.text("I am a paragraph"));
+	$.tag("div", ()=>{
 		$.text("Click on the button:");
 		$.tag("br");
-		$.tag("button", $=>$.text("I am a button"));
+		$.tag("button", ()=>$.text("I am a button"));
 	});
 });
 ```
