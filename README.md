@@ -17,7 +17,7 @@ See [JXServer](https://github.com/samuelnovaes/jxserver). A Renderplus web serve
 - [$.script](#scriptcallbackfunction)
 - [Using with Express](#using-with-express)
 - [Using in browser](#using-in-browser)
-- [Using as Vue.js template](#using-as-vuejs-template-for-components)
+- [Using as Vue.js template](#using-as-vuejs-template)
 
 
 # Install
