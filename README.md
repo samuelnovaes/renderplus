@@ -323,7 +323,16 @@ const render = require("renderplus");
 
 app.get("/", (req, res)=>{
 	res.send(render($=>{
-		//Your elements here
+		$.doctype("html");
+		$.tag("html", ()=>{
+			$.tag("head", ()=>{
+				$.tag("title", ()=>$.text("Hello World"));
+				$.tag("meta", {charset: "utf-8"});
+			});
+			$.tag("body", ()=>{
+				$.tag("h1", ()=>$.text("Hello World!"));
+			});
+		});
 	}));
 });
 
