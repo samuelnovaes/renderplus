@@ -3,11 +3,13 @@
 	function render(fn){		
 		var $ = {
 			_tabs: 0,
-			_value: '<!DOCTYPE html>',
+			_value: "",
 			_indent: function(){
-				this._value += "\n";
-				for(var i = 0; i < this._tabs; i++){
-					this._value += "\t";
+				if(this._value != ""){
+					this._value += "\n";
+					for(var i = 0; i < this._tabs; i++){
+						this._value += "\t";
+					}
 				}
 			},
 			_camelCase2Trace: function(txt){
@@ -77,6 +79,11 @@
 				else{
 					this._tabs--;
 				}
+			},
+			doctype: function(txt){
+				if(txt === undefined) throw new Error("Expected doctype argument");
+				this._indent();
+				this._value += "<!DOCTYPE "+txt+">";
 			},
 			text: function(txt){
 				if(txt === undefined) throw new Error("Expected text argument");

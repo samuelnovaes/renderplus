@@ -18,6 +18,7 @@ npm install renderplus
 const render = require("renderplus");
 
 let html = render($=>{
+	$.doctype("html");
 	$.tag("html", ()=>{
 		$.tag("head", ()=>{
 			$.tag("title", ()=>$.text("Test"));
@@ -121,23 +122,34 @@ console.log(html);
 </html>
 ```
 
-# render
+## render(callback:function)
 
-Render the html page
-
-- render(callback:function)
+Render the HTML page
 
 ```javascript
 render($=>{
 	//You can create tags, text and comments here
 });
 ```
+## $.doctype(type:string)
 
-# $.tag
+Add a doctype to HTML page
+
+```javascript
+render($=>{
+	$.doctype("html");
+});
+```
+
+**Output**
+
+```html
+<!DOCTYPE html>
+```
+
+## $.tag(tagName:string, attrs:object*, callback:function*)
 
 Add tag
-
-- $.tag(tagName:string, attrs:object*, callback:function*)
 
 ```javascript
 render($=>{
@@ -154,7 +166,6 @@ render($=>{
 **Output**
 
 ```html
-<!DOCTYPE html>
 <br>
 <img src="pic.png">
 <div>
@@ -162,11 +173,9 @@ render($=>{
 <div id="my-div">
 </div>
 ```
-# $.text
+## $.text(text:string)
 
 Add text
-
-- $.text(text:string)
 
 ```javascript
 render($=>{
@@ -182,7 +191,6 @@ render($=>{
 **Output**
 
 ```html
-<!DOCTYPE html>
 Hello World
 <p>
 	I am a paragraph
@@ -196,11 +204,9 @@ Hello World
 </div>
 ```
 
-# $.comment
+## $.comment(text:string)
 
 Add html comment tag
-
-- $.comment(text:string)
 
 ```javascript
 render($=>{
@@ -211,15 +217,12 @@ render($=>{
 **Output**
 
 ```html
-<!DOCTYPE html>
 <!-- I am a comment -->
 ```
 
-# $.style
+## $.style(styles:object)
 
 Add style tag
-
-- $.style(styles:object)
 
 ```javascript
 /*
@@ -252,7 +255,6 @@ render($=>{
 **Output**
 
 ```html
-<!DOCTYPE html>
 <style type="text/css">
 	*{
 		font-family: arial, sans-serif;
@@ -271,11 +273,9 @@ render($=>{
 </style>
 ```
 
-# $.script
+## $.script(callback:function)
 
 Add script tag with code
-
-- $.script(callback:function)
 
 ```javascript
 render($=>{
@@ -291,7 +291,6 @@ render($=>{
 **Output**
 
 ```html
-<!DOCTYPE html>
 <script type="text/javascript">
 	function test(){
 		let val = document.getElementById("choice").value;
@@ -342,4 +341,18 @@ Download renderplus.js library [here](https://raw.githubusercontent.com/samuelno
 
 	</body>
 </html>
+```
+
+# Using as [Vue.js](https://vuejs.org) template for components
+
+```javascript
+Vue.component('my-component', {
+	template: render($=>{
+		$.tag("div", ()=>{
+			$.tag("button", ()=>$.text("I am a button"));
+			$.tag("br");
+			$.tag("img", {src: "demo.png"});
+		});
+	});
+});
 ```
