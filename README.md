@@ -133,7 +133,7 @@ render($=>{
 ```
 ## $.doctype(type:string)
 
-Add a doctype to HTML page
+Add doctype
 
 ```javascript
 render($=>{
