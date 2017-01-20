@@ -6,11 +6,27 @@ Render advanced HTML pages with JavaScript
 
 See [JXServer](https://github.com/samuelnovaes/jxserver). A Renderplus web server
 
+- [Install](#install);
+- [Full example](#full-example);
+- [render](#rendercallbackfunction)
+- [$.doctype](#doctypetypestring)
+- [$.tag](#tagtagnamestring-attrsobject-callbackfunction)
+- [$.text](#texttextstring)
+- [$.comment](#commenttextstring)
+- [$.style](#stylestylesobject)
+- [$.script](#scriptcallbackfunction)
+- [Using with Express](#using-with-express)
+- [Using in browser](#using-in-browser)
+- [Using as Vue.js template](#using-as-vuejs-template-for-components)
+
+
 # Install
 
 ```bash
 npm install renderplus
 ```
+
+or download [renderplus.js](https://raw.githubusercontent.com/samuelnovaes/renderplus/master/renderplus.js) to use in browser
 
 # Full example
 
@@ -343,7 +359,7 @@ Download renderplus.js library [here](https://raw.githubusercontent.com/samuelno
 </html>
 ```
 
-# Using as [Vue.js](https://vuejs.org) template for components
+# Using as [Vue.js](https://vuejs.org) template
 
 ```javascript
 Vue.component('my-component', {
