@@ -1,6 +1,6 @@
 (function(){
 	var autoclose = ['area','base','br','col','embed','hr','img','input','keygen','link','menuitem','meta','param','source','track','wbr'];
-	function render(fn){		
+	function render(fn){
 		var $ = {
 			_tabs: 0,
 			_value: "",
@@ -21,7 +21,6 @@
 				while(/\n\t* {4}/g.test(nofunc)){
 					nofunc = nofunc.replace(/(\n\t*) {4}/g, "$1\t");
 				}
-
 				var moved = null;
 				nofunc.split(/\n/g).forEach(function(item){
 					if(!/^\s*$/.test(item)){
@@ -32,7 +31,6 @@
 						}
 					}
 				});
-
 				var regMoved = new RegExp("\n\t{"+moved+"}", "g");
 				var tabs = "\n";
 				for(var i = 0; i < this._tabs; i++){
@@ -43,7 +41,6 @@
 				.replace(regMoved, tabs)
 				.replace(regTabs, "")
 				.replace(/\n\t*$/, "");
-
 				return nofunc;
 			},
 			tag: function(name, attrs, fn){

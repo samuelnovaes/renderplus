@@ -75,7 +75,7 @@ let html = render($=>{
 			});
 		});
 	});
-})
+});
 
 console.log(html);
 ```
