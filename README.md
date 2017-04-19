@@ -26,7 +26,7 @@ See [JXServer](https://github.com/samuelnovaes/jxserver). A Renderplus web serve
 npm install renderplus
 ```
 
-or download [renderplus.js](https://raw.githubusercontent.com/samuelnovaes/renderplus/master/renderplus.js) to use in browser
+or download [renderplus.js](https://unpkg.com/renderplus/renderplus.js) to use in browser
 
 # Full example
 
@@ -341,7 +341,7 @@ app.listen(8080, ()=>console.log("Server running"));
 
 # Using in browser
 
-Download renderplus.js library [here](https://raw.githubusercontent.com/samuelnovaes/renderplus/master/renderplus.js)
+Download renderplus.js library [here](https://unpkg.com/renderplus/renderplus.js)
 
 ```html
 <!DOCTYPE html>
