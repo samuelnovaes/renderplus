@@ -12,7 +12,7 @@
 					}
 				}
 			},
-			_camelCase2Trace: function(txt){
+			_camel2Kebab: function(txt){
 				return txt.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 			},
 			_processFunction: function(fn){
@@ -58,7 +58,7 @@
 				this._value += '<'+name;
 				if(attrs){
 					for(var i in attrs){
-						this._value += ' '+i;
+						this._value += ' '+_camel2Kebab(i);
 						if(attrs[i] != null){
 							this._value += '="'+attrs[i]+'"';
 						}
@@ -104,7 +104,7 @@
 					this._tabs++;
 					for(var j in obj[i]){
 						this._indent();
-						this._value += this._camelCase2Trace(j)+": "+obj[i][j]+";";
+						this._value += this._camel2Kebab(j)+": "+obj[i][j]+";";
 					}
 					this._tabs--;
 					this._indent();
