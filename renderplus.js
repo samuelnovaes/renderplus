@@ -58,7 +58,7 @@
 				this._value += '<'+name;
 				if(attrs){
 					for(var i in attrs){
-						this._value += ' '+_camel2Kebab(i);
+						this._value += ' '+this._camel2Kebab(i);
 						if(attrs[i] != null){
 							this._value += '="'+attrs[i]+'"';
 						}
