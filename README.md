@@ -130,7 +130,7 @@ app.get('/', (req, res) => {
 	)	
 })
 
-app.render(8080)
+app.listen(8080)
 
 function layout(children) {
 	return (
@@ -144,7 +144,7 @@ function layout(children) {
 	)
 }
 
-function custonButton(label){
-	return ['button', {class: 'my-custon-button'}, [label]]
+function customButton(label){
+	return ['button', {class: 'my-custom-button'}, [label]]
 }
 ```
