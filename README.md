@@ -118,6 +118,20 @@ const renderplus = require("renderplus")
 const app = express()
 app.use(renderplus)
 
+let layout(children) => (
+	['html', [
+		['head', [
+			['title', ['Test']],
+			['meta', {charset: 'utf-8'}]
+		]],
+		['body', children]
+	]]
+)
+
+let customButton(label) => (
+	['button', {class: 'my-custom-button'}, [label]]
+)
+
 app.get('/', (req, res) => {
 	res.render(
 		layout([
@@ -131,20 +145,4 @@ app.get('/', (req, res) => {
 })
 
 app.listen(8080)
-
-function layout(children) {
-	return (
-		['html', [
-			['head', [
-				['title', ['Test']],
-				['meta', {charset: 'utf-8'}]
-			]],
-			['body', children]
-		]]
-	)
-}
-
-function customButton(label){
-	return ['button', {class: 'my-custom-button'}, [label]]
-}
 ```
