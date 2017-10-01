@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 	)
 })
 
-app.render(8080)
+app.listen(8080)
 ```
 
 **It renders**
