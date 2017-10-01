@@ -69,7 +69,7 @@ app.render(8080)
 		<select id="choice" onchange="test()">
 			<option value="0">zero</option>
 			<option value="1">one</option>
-			<option value="2" selected>two</option>
+			<option value="2">two</option>
 			<option value="3">three</option>
 			<option value="4">four</option>
 		</select>

@@ -37,7 +37,7 @@ module.exports = (req, res, next) => {
 			let strChildren = children.map(c => convert(c)).join('')
 			let strProps = ''
 			for (let i in props) {
-				strProps += ` ${camel2Kebab(i)}="${props[i]}"`
+				strProps += ` ${camel2Kebab(i)}${props[i] === '' ? '' : `="${props[i]}"`}`
 			}
 
 			if (tag) return `<${tag}${strProps}>${autoclose.indexOf(tag) == -1 ? `${strChildren}</${tag}>` : ''}`
