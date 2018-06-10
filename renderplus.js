@@ -13,9 +13,7 @@ module.exports = (req, res, next) => {
 			let children = arr[2]
 			let els = arr[3]
 
-			if (tag == 'for') {
-				return props.map(children).map(elem => convert(elem)).join('')
-			}
+			if (tag == 'for') return props.map(children).map(elem => convert(elem)).join('')
 
 			if (tag == 'if') {
 				if (props) {
@@ -27,14 +25,17 @@ module.exports = (req, res, next) => {
 				return ''
 			}
 
-			if (Array.isArray(props)) {
+			if (Array.isArray(props) || typeof props != 'object') {
 				children = props
 				props = {}
 			}
+
 			props = props || {}
 			children = children || []
 
+			children = Array.isArray(children) ? children : [children]
 			let strChildren = children.map(c => convert(c)).join('')
+
 			let strProps = ''
 			for (let i in props) {
 				strProps += ` ${camel2Kebab(i)}${props[i] === '' ? '' : `="${props[i]}"`}`
