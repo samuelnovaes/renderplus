@@ -41,13 +41,15 @@ app.get('/', (req, res) => {
 				['br'],
 				['select', { id: 'choice', onchange: 'test()' }, [
 					//List rendering
-					['for', options, i => ['option', { value: i.value }, i.text]]
+					['for', options, i => (
+						['option', { value: i.value }, i.text]
+					)]
 				]],
 				//Conditional rendering
-				['if', button1,
-					['button', 'Button 1'],
-					['button', 'Button 2']
-				]
+				['if', button1, {
+					then: ['button', 'Button 1'],
+					else: ['button', 'Button 2']
+				}]
 			]]
 		]]
 	)
@@ -139,7 +141,10 @@ res.render(htmlTag)
 # Conditional rendering
 
 ```javascript
-['if', condition, thenContent, elseContent]
+['if', condition, {
+	then: thenContent,
+	else: elseContent
+}]
 ```
 
 - `condition`: boolean
